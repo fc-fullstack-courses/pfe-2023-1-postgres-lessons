@@ -27,7 +27,7 @@
 */
 CREATE TABLE users(
   -- опис структури таблиці
-  id INT,
+  id SERIAL,
   first_name VARCHAR(80),
   last_name VARCHAR(80),
   balance NUMERIC(13,2),

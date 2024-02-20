@@ -9,6 +9,6 @@ VALUES
 (3,'Other','User', 0, true, '1980-6-7');
 -- вказання порядку вставки даних
 INSERT INTO users 
-(balance, first_name, last_name, is_male)
+(balance, first_name, last_name, is_male, birthday)
 VALUES
-(1500, 'first', 'last', false);
+(1500, 'second', 'last', true,'2005-12-28' );
