@@ -27,13 +27,23 @@
 */
 CREATE TABLE users(
   -- опис структури таблиці
+  -- uuid - специфічна варіація айдішника
+  -- id UUID DEFAULT gen_random_uuid(),
   id SERIAL,
   first_name VARCHAR(80),
   last_name VARCHAR(80),
-  balance NUMERIC(13,2),
+  balance NUMERIC(13,2) DEFAULT 0.00,
   is_male BOOLEAN,
-  birthday DATE
+  birthday DATE,
+  created_at TIMESTAMP DEFAULT current_timestamp,
+  updated_at TIMESTAMP DEFAULT current_timestamp
 );
+
+INSERT INTO users 
+(first_name, balance)
+VALUES
+('second', 1500),
+('third', DEFAULT);
 
 /*
 

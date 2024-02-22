@@ -11,4 +11,7 @@ VALUES
 INSERT INTO users 
 (balance, first_name, last_name, is_male, birthday)
 VALUES
+(-150000000, 'second', 'last', true,'2005-12-28' ),
+(1500, '', '', true,'2005-12-28' ),
+(1500, 'second', 'last', true,'1567-12-28' ),
 (1500, 'second', 'last', true,'2005-12-28' );
