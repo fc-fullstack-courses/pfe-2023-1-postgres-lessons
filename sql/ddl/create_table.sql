@@ -29,12 +29,14 @@ CREATE TABLE users(
   -- опис структури таблиці
   -- uuid - специфічна варіація айдішника
   -- id UUID DEFAULT gen_random_uuid(),
-  id SERIAL,
-  first_name VARCHAR(80),
-  last_name VARCHAR(80),
-  balance NUMERIC(13,2) DEFAULT 0.00,
+  id SERIAL NOT NULL,
+  first_name VARCHAR(80) NOT NULL,
+  last_name VARCHAR(80) NOT NULL,
+  -- не дозволяє встановлювати у стовпчик значення NULL
+  email VARCHAR(160) NOT NULL,
+  balance NUMERIC(13,2) NOT NULL DEFAULT 0.00,
   is_male BOOLEAN,
-  birthday DATE,
+  birthday DATE NOT NULL,
   created_at TIMESTAMP DEFAULT current_timestamp,
   updated_at TIMESTAMP DEFAULT current_timestamp
 );
