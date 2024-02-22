@@ -29,7 +29,9 @@ CREATE TABLE users(
   -- опис структури таблиці
   -- uuid - специфічна варіація айдішника
   -- id UUID DEFAULT gen_random_uuid(),
-  id SERIAL NOT NULL UNIQUE,
+  -- Первинний ключ - комбінація обмежень NOT NULL і UNIQUE
+  -- id SERIAL NOT NULL UNIQUE,
+  id SERIAL PRIMARY KEY,
   first_name VARCHAR(80) NOT NULL,
   last_name VARCHAR(80) NOT NULL,
   -- не дозволяє встановлювати у стовпчик значення NULL
@@ -67,6 +69,12 @@ CREATE TABLE test (
   b TEXT,
   -- унікальна група стовпчиків
   UNIQUE (a, b)
+);
+
+CREATE TABLE cars_to_dealerships (
+  car_id INT,
+  dealership_id INT,
+  PRIMARY KEY (car_id, dealership_id)
 );
 
 INSERT INTO test
