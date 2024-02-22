@@ -38,7 +38,9 @@ CREATE TABLE users(
   -- обмеження стовпчика UNIQUE
   -- email VARCHAR(160) NOT NULL UNIQUE,
   email VARCHAR(160) NOT NULL CHECK(email != ''),
-  balance NUMERIC(13,2) NOT NULL DEFAULT 0.00 CHECK (balance >= 0),
+  balance NUMERIC(13,2) NOT NULL DEFAULT 0.00 
+  -- CONSTRAINT дозволяє дати своє ім'я обмеженням CHECK, UNIQUE, PRIMARY KEY
+  CONSTRAINT "balance must be positive" CHECK (balance >= 0),
   height NUMERIC(3,2) CHECK (height > 0.3 AND height < 3),
   is_male BOOLEAN,
   birthday DATE NOT NULL CHECK (birthday > '1930-01-01' AND birthday <= current_date ),
@@ -46,7 +48,7 @@ CREATE TABLE users(
   updated_at TIMESTAMP DEFAULT current_timestamp,
   -- обмеження таблиці
   UNIQUE (email),
-  CHECK(first_name != '')
+  CONSTRAINT "first name not empty" CHECK(first_name != '')
 );
 
 DROP TABLE users;
@@ -54,7 +56,7 @@ DROP TABLE users;
 INSERT INTO users 
 (first_name, last_name, email, is_male, balance, birthday, height)
 VALUES
-( 'second', 'last', 'mail@mail.com', true, 0,'2005-12-28', 1.5 ),
+( 'second', 'last', 'mail@mail.com', true, 450,'2005-12-28', 1.5 ),
 ( 'User', 'User', 'test@test.com', true,1500,'2005-12-28', 1.80 ),
 ( 'second', 'last', 'adbsahd@sdnsa.csas',true,1500, '1967-12-28', 1.1 ),
 ( 'second', 'last', 'mail1@mail.com', true,1500,'2005-12-28', 2.99);
