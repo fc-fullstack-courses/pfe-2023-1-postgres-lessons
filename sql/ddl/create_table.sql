@@ -33,27 +33,31 @@ CREATE TABLE users(
   -- id SERIAL NOT NULL UNIQUE,
   id SERIAL PRIMARY KEY,
   first_name VARCHAR(80) NOT NULL,
-  last_name VARCHAR(80) NOT NULL,
+  last_name VARCHAR(80) NOT NULL CHECK(last_name != ''),
   -- не дозволяє встановлювати у стовпчик значення NULL
   -- обмеження стовпчика UNIQUE
   -- email VARCHAR(160) NOT NULL UNIQUE,
-  email VARCHAR(160) NOT NULL,
-  balance NUMERIC(13,2) NOT NULL DEFAULT 0.00,
+  email VARCHAR(160) NOT NULL CHECK(email != ''),
+  balance NUMERIC(13,2) NOT NULL DEFAULT 0.00 CHECK (balance >= 0),
+  height NUMERIC(3,2) CHECK (height > 0.3 AND height < 3),
   is_male BOOLEAN,
-  birthday DATE NOT NULL,
+  birthday DATE NOT NULL CHECK (birthday > '1930-01-01' AND birthday <= current_date ),
   created_at TIMESTAMP DEFAULT current_timestamp,
   updated_at TIMESTAMP DEFAULT current_timestamp,
   -- обмеження таблиці
-  UNIQUE (email)
+  UNIQUE (email),
+  CHECK(first_name != '')
 );
 
+DROP TABLE users;
+
 INSERT INTO users 
-(first_name, last_name, email, is_male, balance, birthday)
+(first_name, last_name, email, is_male, balance, birthday, height)
 VALUES
-( 'second', 'last', 'mail@mail.com', true,-150000000,'2005-12-28' ),
-( '', '', 'test@test.com', true,1500,'2005-12-28' ),
-( 'second', 'last', '',true,1500, '1567-12-28' ),
-( 'second', 'last', 'mail@mail.com', true,1500,'2005-12-28' );
+( 'second', 'last', 'mail@mail.com', true, 0,'2005-12-28', 1.5 ),
+( 'User', 'User', 'test@test.com', true,1500,'2005-12-28', 1.80 ),
+( 'second', 'last', 'adbsahd@sdnsa.csas',true,1500, '1967-12-28', 1.1 ),
+( 'second', 'last', 'mail1@mail.com', true,1500,'2005-12-28', 2.99);
 /*
 
   15
