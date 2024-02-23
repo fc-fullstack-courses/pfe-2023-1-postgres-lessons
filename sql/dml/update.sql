@@ -9,7 +9,7 @@ WHERE id = 7;
 -- 
 UPDATE users
 SET is_male = false
-WHERE id = 10;
+WHERE id = 16;
 -- встановити користувачам з непарним id
 -- balance в 3333
 UPDATE users
