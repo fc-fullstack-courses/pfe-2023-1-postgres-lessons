@@ -33,3 +33,14 @@ SET balance = balance + 300
 WHERE id = 10
 -- працює для INSERT, UPDATE, DELETE
 RETURNING *;
+
+/*
+ make_date(6546,6,7);
+ extract(hour from birthday) OR date_part();
+ age(birthday)
+
+ зміна типу даних на int для make_date
+SELECT INT '19970808'
+SELECT '19970808'::INT
+SELECT CAST ('19970808' AS INT)
+*/
