@@ -60,6 +60,12 @@ VALUES
 ( 'User', 'User', 'test@test.com', true,1500,'2005-12-28', 1.80 ),
 ( 'second', 'last', 'adbsahd@sdnsa.csas',true,1500, '1967-12-28', 1.1 ),
 ( 'second', 'last', 'mail1@mail.com', true,1500,'2005-12-28', 2.99);
+
+INSERT INTO users 
+(first_name, last_name, email, is_male, balance, birthday, height)
+VALUES
+( 'Jane', 'Doe', 'jdoe@mail.com', true, 1500,'2005-12-28', 1.5 );
+
 /*
 
   15
