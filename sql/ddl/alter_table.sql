@@ -39,7 +39,7 @@ ALTER TABLE users
 ALTER COLUMN balance TYPE NUMERIC (16,3);
 -- зміна назви стовпчика
 ALTER TABLE users
-RENAME COLUMN first_name TO name_1;
+RENAME COLUMN name_1  TO first_name;
 --  зміна назви таблиці
 ALTER TABLE test
 RENAME TO new_name;
