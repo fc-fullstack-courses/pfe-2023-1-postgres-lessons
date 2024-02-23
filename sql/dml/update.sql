@@ -30,4 +30,6 @@ WHERE id = 10;
 -- зміна значень на основі попередніх даних
 UPDATE users
 SET balance = balance + 300
-WHERE id = 10;
+WHERE id = 10
+-- працює для INSERT, UPDATE, DELETE
+RETURNING *;

@@ -64,7 +64,7 @@ VALUES
 INSERT INTO users 
 (first_name, last_name, email, is_male, balance, birthday, height)
 VALUES
-( 'Jane', 'Doe', 'jdoe@mail.com', true, 1500,'2005-12-28', 1.5 );
+( 'Jane', 'Doe', 'jdoe1@mail.com', true, 1500,'2005-12-28', 1.5 );
 
 /*
 

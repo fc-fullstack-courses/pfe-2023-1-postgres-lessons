@@ -1,6 +1,7 @@
 -- видалення записів з таблиць
 -- видалення всіх записів
-DELETE FROM users;
+DELETE FROM users
+RETURNING id, email, balance, created_at;
 -- видалення конкретних користувачів
 -- всіх користувачів з висотою 1.5 м
 DELETE FROM users
