@@ -20,6 +20,35 @@ const u = {
   birthday: '1997-01-05'
 }
 
+const users = [
+  {
+    firstName: 'Inserted',
+    lastName: 'User',
+    email: 'ins_3@gmail.com',
+    isMale: true,
+    balance: 3501.55,
+    height: 1.70,
+    birthday: '1997-01-05'
+  },
+  {
+    firstName: 'Inserted',
+    lastName: 'User',
+    email: 'ins_4@gmail.com',
+    isMale: true,
+    balance: 3501.55,
+    height: 1.70,
+    birthday: '1997-01-05'
+  }
+]
+
+function mapUser (u) {
+  return `('${u.firstName}', '${u.lastName}', '${u.email}', ${u.isMale}, ${u.balance}, ${u.height}, '${u.birthday}')`
+}
+
+const insertUserStringArr = users.map(user => mapUser(user));
+
+const insertUserString = insertUserStringArr.join();
+
 async function start() {
   await client.connect();
 
@@ -33,7 +62,7 @@ async function start() {
     "birthday"
   ) 
   VALUES
-  ('${u.firstName}', '${u.lastName}', '${u.email}', ${u.isMale}, ${u.balance}, ${u.height}, '${u.birthday}')
+  ${insertUserString}
   RETURNING *;`);
   // користувачі
   console.log(result.rows); 
