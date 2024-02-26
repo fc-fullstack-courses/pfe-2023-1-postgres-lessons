@@ -1,4 +1,11 @@
 const _ = require('lodash');
+const {
+  minBalance,
+  maxBalance,
+  isFloatBalance,
+  minHeight,
+  maxHeight,
+} = require('../config/usersGeneration.json');
 
 function mapUser(u) {
   const {
@@ -10,13 +17,13 @@ function mapUser(u) {
 
   const isMale = gender === 'male';
 
-  const balance = _.random(0, 5000, true);
+  const balance = _.random(minBalance, maxBalance, isFloatBalance);
 
-  const height = _.random(1.5, 2);
+  const height = _.random(minHeight, maxHeight);
 
   return `('${first}', '${last}', '${email}', ${isMale}, ${balance}, ${height}, '${birthday}')`;
 }
 
 const mapUsers = (usersArr) => usersArr.map((user) => mapUser(user)).join(',');
 
-module.exports. mapUsers = mapUsers;
+module.exports.mapUsers = mapUsers;

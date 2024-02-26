@@ -1,13 +1,14 @@
 const { Client } = require('pg');
 const { getUsers } = require('../api');
 const { mapUsers } = require('../utils/userUtils');
+const { user, password, host, port, database } = require('../config/db.json');
 
 const config = {
-  user: 'postgres',
-  password: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  database: 'pfe-2023_1_lessons',
+  user,
+  password,
+  host,
+  port,
+  database,
 };
 
 const client = new Client(config);

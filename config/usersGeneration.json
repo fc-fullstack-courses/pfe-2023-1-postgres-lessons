@@ -1,0 +1,7 @@
+{
+  "minBalance": 0,
+  "maxBalance": 5000,
+  "isFloatBalance": true,
+  "minHeight": 1.5,
+  "maxHeight": 2
+}
