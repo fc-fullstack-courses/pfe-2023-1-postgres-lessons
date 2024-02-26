@@ -44,3 +44,13 @@ SELECT INT '19970808'
 SELECT '19970808'::INT
 SELECT CAST ('19970808' AS INT)
 */
+
+-- змінити дату народження людини
+UPDATE users
+SET birthday = make_date(1966, extract(month from birthday)::INT, extract(day from birthday)::INT)
+WHERE id = 16
+RETURNING *;
+
+SELECT id, first_name, last_name, age(birthday) "age"
+FROM users;
+

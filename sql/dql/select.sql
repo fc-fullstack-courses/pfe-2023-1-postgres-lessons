@@ -21,3 +21,8 @@ WHERE is_male;
 SELECT *
 FROM users
 WHERE NOT is_male;
+-- знайти користувача певного віку 
+SELECT *
+FROM workers
+WHERE
+EXTRACT(years from AGE(birthday)) = 23;
