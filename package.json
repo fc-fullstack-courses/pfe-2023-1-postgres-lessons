@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/fc-fullstack-courses/pfe-2023-1-postgres-lessons#readme",
   "dependencies": {
-    "pg": "^8.11.3"
+    "axios": "^1.6.7",
+    "lodash": "^4.17.21",
+    "pg": "^8.11.3",
+    "query-string": "^9.0.0"
   }
 }

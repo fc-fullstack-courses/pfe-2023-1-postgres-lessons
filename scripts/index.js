@@ -1,4 +1,6 @@
 const { Client } = require('pg');
+const _ = require('lodash');
+const { getUsers } = require('../api');
 
 const config = {
   user: 'postgres',
@@ -10,46 +12,28 @@ const config = {
 
 const client = new Client(config);
 
-const u = {
-  firstName: 'Inserted',
-  lastName: 'User',
-  email: 'ins_2@gmail.com',
-  isMale: true,
-  balance: 3501.55,
-  height: 1.70,
-  birthday: '1997-01-05'
+function mapUser(u) {
+  const {
+    name: { first, last },
+    email,
+    dob: { date: birthday },
+    gender,
+  } = u;
+
+  const isMale = gender === 'male';
+
+  const balance = _.random(0, 5000, true);
+
+  const height = _.random(1.5, 2);
+
+  return `('${first}', '${last}', '${email}', ${isMale}, ${balance}, ${height}, '${birthday}')`;
 }
 
-const users = [
-  {
-    firstName: 'Inserted',
-    lastName: 'User',
-    email: 'ins_3@gmail.com',
-    isMale: true,
-    balance: 3501.55,
-    height: 1.70,
-    birthday: '1997-01-05'
-  },
-  {
-    firstName: 'Inserted',
-    lastName: 'User',
-    email: 'ins_4@gmail.com',
-    isMale: true,
-    balance: 3501.55,
-    height: 1.70,
-    birthday: '1997-01-05'
-  }
-]
-
-function mapUser (u) {
-  return `('${u.firstName}', '${u.lastName}', '${u.email}', ${u.isMale}, ${u.balance}, ${u.height}, '${u.birthday}')`
-}
-
-const insertUserStringArr = users.map(user => mapUser(user));
-
-const insertUserString = insertUserStringArr.join();
+const mapUsers = (usersArr) => usersArr.map((user) => mapUser(user)).join(',');
 
 async function start() {
+  const users = await getUsers();
+
   await client.connect();
 
   const result = await client.query(`INSERT INTO users (
@@ -60,12 +44,12 @@ async function start() {
     "balance",
     "height",
     "birthday"
-  ) 
+  )
   VALUES
-  ${insertUserString}
+  ${mapUsers(users)}
   RETURNING *;`);
   // користувачі
-  console.log(result.rows); 
+  console.log(result.rows);
 
   await client.end();
 }
