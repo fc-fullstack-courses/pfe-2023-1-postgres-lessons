@@ -50,3 +50,10 @@ WITH new_table AS (
   SELECT * FROM new_table
 )
 SELECT * FROM new_table;
+-- Пагінація у СУБД
+SELECT * FROM users
+WHERE balance > 0
+-- кількість записів (аналог results у параметрах URL)
+LIMIT 5
+-- зсув (скільки записів пропустити)
+OFFSET 5;
