@@ -77,3 +77,19 @@ SELECT SUM(balance) FROM users;
 SELECT COUNT(height)
 FROM users
 WHERE height > 1.6;
+-- найбільший зріст чоловіків
+SELECT max(height), min(height) FROM users
+WHERE is_male;
+-- найбільший зріст жінок
+SELECT max(height) FROM users
+WHERE NOT is_male;
+-- найбільший зріст чоловіків і жінок
+SELECT max(height), is_male
+FROM users
+-- створюємо групи записів для агрегатних функцій
+GROUP BY is_male;
+--
+SELECT max(height), is_male
+FROM users
+WHERE balance > 1500
+GROUP BY is_male;
