@@ -26,3 +26,19 @@ SELECT *
 FROM workers
 WHERE
 EXTRACT(years from AGE(birthday)) = 23;
+-- користувачі з повним ім'ям менше ніж 15 символів
+SELECT id, first_name || ' ' || last_name AS full_name, email
+FROM users
+WHERE length(first_name || ' ' || last_name) < 16;
+-- aбо
+SELECT id, CONCAT (first_name, ' ', last_name) AS full_name, email,
+length(CONCAT (first_name, ' ', last_name)) name_length
+FROM users
+WHERE length(CONCAT (first_name, ' ', last_name)) < 16;
+-- підзапит
+SELECT *
+FROM (
+  SELECT *, CONCAT (first_name, ' ', last_name) AS full_name
+  FROM users
+)
+WHERE length (full_name) < 16;
