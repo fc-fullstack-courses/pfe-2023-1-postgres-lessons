@@ -1,4 +1,5 @@
 const { Client } = require('pg');
+const fs = require('fs/promises');
 const { getUsers } = require('../api');
 const { mapUsers } = require('../utils/userUtils');
 const { user, password, host, port, database } = require('../config/db.json');
@@ -17,6 +18,10 @@ async function start() {
   const users = await getUsers();
 
   await client.connect();
+
+  const resetQuery = await fs.readFile(`${__dirname}/sql/reset.sql`, 'utf-8');
+
+  await client.query(resetQuery);
 
   const result = await client.query(`INSERT INTO users (
     "first_name",
