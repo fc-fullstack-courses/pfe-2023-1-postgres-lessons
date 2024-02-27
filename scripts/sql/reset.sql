@@ -6,7 +6,6 @@ CREATE TABLE IF NOT EXISTS users (
   last_name VARCHAR(80) NOT NULL CHECK(last_name != ''),
   email VARCHAR(160) NOT NULL UNIQUE CHECK(email != ''),
   balance NUMERIC(13,2) NOT NULL DEFAULT 0.00 CHECK (balance >= 0),
-  CONSTRAINT "balance must be positive" CHECK (balance >= 0),
   height NUMERIC(3,2) CHECK (height > 0.3 AND height < 3),
   "weight" NUMERIC(5,2) CHECK ("weight" BETWEEN 0 AND 600),
   is_male BOOLEAN,
