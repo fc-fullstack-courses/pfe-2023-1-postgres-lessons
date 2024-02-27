@@ -30,6 +30,8 @@ async function start() {
     "is_male",
     "balance",
     "height",
+    "weight",
+    "comments",
     "birthday"
   )
   VALUES
