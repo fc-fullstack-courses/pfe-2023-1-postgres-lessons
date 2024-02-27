@@ -57,3 +57,23 @@ WHERE balance > 0
 LIMIT 5
 -- зсув (скільки записів пропустити)
 OFFSET 5;
+-- Агрегатні функції
+/*
+  avg - середне значення
+  max - максимальне значення
+  min - мінімальне значення
+  sum - аналог reduce з js (акомулятор)
+  count - кількість кортежів / рядків у запиті
+*/
+-- середній зріст користувачів
+SELECT AVG(height) FROM users;
+-- найбільший зріст користувача
+SELECT MAX(height) FROM users;
+-- мінімальний зріст
+SELECT MIN(height) FROM users;
+-- загальна кількість коштів на рахунках користувачів
+SELECT SUM(balance) FROM users;
+-- кількість користувачів які вищі ніж 1.6
+SELECT COUNT(height)
+FROM users
+WHERE height > 1.6;
