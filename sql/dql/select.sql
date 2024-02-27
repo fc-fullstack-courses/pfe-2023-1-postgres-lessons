@@ -93,3 +93,34 @@ SELECT max(height), is_male
 FROM users
 WHERE balance > 1500
 GROUP BY is_male;
+-- знайти
+-- мінімальний баланс користувачів
+SELECT min(balance) FROM users;
+-- мінімальну, середну та максимальню кількість коментарів
+SELECT min(comments), avg(comments), max(comments) FROM users;
+-- середню вагу чоловіків і жінок
+SELECT avg("weight"), is_male
+FROM users
+GROUP BY is_male;
+-- кількість людей з певним конкретним ім'ям (Rishi)
+SELECT count(*) FROM users WHERE first_name = 'Rishi';
+--
+SELECT count(*), first_name FROM users  GROUP BY first_name;
+-- * кількість чоловіків у віці від 33 до 47 років
+SELECT count(*) 
+FROM users
+WHERE is_male AND 
+EXTRACT(years from age(birthday)) >= 33 AND
+EXTRACT(years from age(birthday)) <= 47; 
+-- підзапити
+SELECT count (*)
+FROM (
+  SELECT *, EXTRACT(years from age(birthday)) "age"
+  FROM users
+)
+WHERE is_male AND age >= 33 AND age <= 47;
+-- 
+SELECT count(*) 
+FROM users
+WHERE is_male AND 
+EXTRACT(years from age(birthday)) BETWEEN 33 AND 47;
