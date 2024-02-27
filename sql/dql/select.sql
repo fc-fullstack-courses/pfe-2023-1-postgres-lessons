@@ -40,5 +40,13 @@ SELECT *
 FROM (
   SELECT *, CONCAT (first_name, ' ', last_name) AS full_name
   FROM users
-)
+) AS "new_table"
 WHERE length (full_name) < 16;
+-- підзапити WITH
+WITH new_table AS (
+  SELECT *, CONCAT (first_name, ' ', last_name) AS full_name
+  FROM users
+), new_table_2 AS (
+  SELECT * FROM new_table
+)
+SELECT * FROM new_table;
