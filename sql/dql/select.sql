@@ -124,3 +124,21 @@ SELECT count(*)
 FROM users
 WHERE is_male AND 
 EXTRACT(years from age(birthday)) BETWEEN 33 AND 47;
+-- кількість людей певного віку (5 людей 47 років, 6 людей 46)
+SELECT count(age), age
+FROM (
+  SELECT *, EXTRACT(years from age(birthday)) "age"
+  FROM users
+)
+GROUP BY age;
+-- 
+-- WHERE - фільтрація рядків (виконується одразу)
+-- HAVING - фільтрація груп значень 
+-- (виконується після агрегацій і може ними користуватися)
+SELECT count(age), age
+FROM (
+  SELECT *, EXTRACT(years from age(birthday)) "age"
+  FROM users
+)
+GROUP BY age
+HAVING count(age) > 4;
