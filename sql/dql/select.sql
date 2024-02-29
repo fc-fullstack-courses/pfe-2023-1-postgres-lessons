@@ -209,3 +209,19 @@ WHERE first_name LIKE 'R___';
 SELECT * FROM users WHERE first_name LIKE 'j%e';
 -- 
 SELECT * FROM users WHERE first_name ILIKE 'j%e';
+-- POSIX регулярки
+/*
+  ~ - відповідність регулярці з урахуванням регістру
+  ~* - відповідність регулярці без урахування регістру
+  !~ - невідповідність регулярці з урахуванням регістру
+  !~* - невідповідність регулярці без урахування регістру
+*/
+-- кількість користувачів ім'я яких розпочинається з B
+SELECT count(*) FROM users
+WHERE first_name ~ 'B.{0,}';
+--
+SELECT count(*) FROM users
+WHERE first_name ~ 'B.*';
+-- SIMILAR TO
+SELECT count(*) FROM users
+WHERE first_name SIMILAR TO 'B%';
