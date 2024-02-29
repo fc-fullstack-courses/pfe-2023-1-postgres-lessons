@@ -38,3 +38,12 @@ CREATE TABLE orders (
   updated_at TIMESTAMP DEFAULT current_timestamp
 );
 
+-- n : m
+-- реалізюєть за допомоги "зв'язувальної таблиці"
+CREATE TABLE products_to_orders (
+  product_id INT NOT NULL REFERENCES products (id),
+  order_id INT NOT NULL REFERENCES orders (id),
+  quantity INT NOT NULL,
+  PRIMARY KEY (product_id, order_id)
+);
+
