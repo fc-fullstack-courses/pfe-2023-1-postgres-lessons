@@ -29,3 +29,12 @@ CREATE TABLE products (
     - тернарні
     - ...
 */
+-- 1 : n
+CREATE TABLE orders (
+  id SERIAL PRIMARY KEY,
+  "status" TEXT,
+  user_id INT NOT NULL REFERENCES users (id),
+  created_at TIMESTAMP DEFAULT current_timestamp,
+  updated_at TIMESTAMP DEFAULT current_timestamp
+);
+
