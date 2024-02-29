@@ -160,3 +160,20 @@ ORDER BY height DESC;
 SELECT id, email, height
 FROM users
 ORDER BY height ASC, email DESC;
+-- Показати 5 найбагатшіх користувачів
+SELECT id, email, balance FROM users
+ORDER BY balance DESC
+LIMIT 5;
+-- Показати всіх користувачів і відсортувати їх
+-- по їх віку (! не дата народження) від найстаршого
+-- до наймолодшого
+-- * з підзапитом
+SELECT *, extract(year from age(birthday)) "вік"
+FROM users
+ORDER BY "вік" DESC;
+-- з підзапитом
+SELECT * FROM (
+  SELECT *, extract(year from age(birthday)) "вік"
+  FROM users
+)
+ORDER BY "вік" DESC;
