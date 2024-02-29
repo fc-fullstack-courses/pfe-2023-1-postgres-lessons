@@ -26,3 +26,9 @@ VALUES
 (2, 1, 5),
 (2, 3, 2),
 (3, 3, 1);
+--
+SELECT u.first_name, u.last_name, p.name, p.price, pto.quantity
+FROM products p
+JOIN products_to_orders pto ON pto.product_id = p.id
+JOIN orders o ON o.id = pto.order_id
+JOIN users u ON u.id = o.user_id;
