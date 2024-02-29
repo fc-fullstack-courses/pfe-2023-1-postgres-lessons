@@ -142,3 +142,21 @@ FROM (
 )
 GROUP BY age
 HAVING count(age) > 4;
+-- Сортування результатів
+-- відсортувати користувачів по висоті (в порядку зростання)
+SELECT id, email, height
+FROM users
+ORDER BY height;
+-- відсортувати користувачів по висоті в порядку зменшення
+/*
+  напрямки сортування:
+    ASC - в порядку зростання
+    DESC - в порядку зменшення
+*/
+SELECT id, email, height
+FROM users
+ORDER BY height DESC;
+-- сортування користувачів по висоті (зростання) і id (зменшення)
+SELECT id, email, height
+FROM users
+ORDER BY height ASC, email DESC;
