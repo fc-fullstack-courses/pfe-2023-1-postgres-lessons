@@ -177,3 +177,35 @@ SELECT * FROM (
   FROM users
 )
 ORDER BY "вік" DESC;
+-- Шаблони пошуку тексту
+-- кількість користувачів ім'я яких розпочинається з B
+SELECT first_name
+FROM users
+WHERE first_name = 'B';
+/*
+  Варіанти шаблонів:
+    LIKE, ILIKE - прості шаблони (аналог глоббінгу)
+    SIMILAR TO - гібрид LIKE і регулярок
+    Regular Expression POSIX - регулярні вирази
+*/
+-- LIKE, ILIKE
+/*
+  Глоббінг 
+    * - будь-яка кількість будь-яких символів
+    ? - 1 будь-який символ
+  LIKE
+    % - будь-яка кількість будь-яких символів
+    _ - 1 будь-який символ
+*/
+-- кількість користувачів ім'я яких розпочинається з B
+SELECT count(first_name)
+FROM users
+WHERE first_name LIKE 'B%';
+-- Всі користувачі ім'я яких розпоинається на R та містить 4 символа
+SELECT *
+FROM users
+WHERE first_name LIKE 'R___';
+-- Всі користувачі ім'я яких розпочинається на J і закінчується на e
+SELECT * FROM users WHERE first_name LIKE 'j%e';
+-- 
+SELECT * FROM users WHERE first_name ILIKE 'j%e';
