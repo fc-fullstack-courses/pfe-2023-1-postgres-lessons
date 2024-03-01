@@ -59,3 +59,12 @@ SELECT id FROM users
 EXCEPT
 SELECT user_id FROM orders;
 --
+SELECT *
+FROM a, b
+WHERE a.txt = b.txt;
+
+-- дізнатися email всіх користувачів, які робили замовлення
+SELECT email
+FROM users, orders
+WHERE users.id = orders.user_id
+GROUP BY email;
