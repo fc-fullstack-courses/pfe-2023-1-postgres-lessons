@@ -47,3 +47,66 @@ CREATE TABLE products_to_orders (
   PRIMARY KEY (product_id, order_id)
 );
 
+-- 0 : 1
+CREATE TABLE countries_1 (
+  id SERIAL PRIMARY KEY,
+  "name" TEXT NOT NULL,
+  -- flag_id INT NOT NULL REFERENCES flags_1 (id),
+  created_at TIMESTAMP DEFAULT current_timestamp
+);
+
+CREATE TABLE flags_1 (
+  id SERIAL PRIMARY KEY,
+  country_id INT REFERENCES countries_1 (id),
+  created_at TIMESTAMP DEFAULT current_timestamp
+);
+
+ALTER TABLE countries_1
+ADD COLUMN flag_id INT NOT NULL REFERENCES flags_1 (id);
+
+-- INSERTS
+INSERT INTO flags_1
+(country_id)
+VALUES
+(NULL);
+
+INSERT INTO countries_1
+("name", flag_id)
+VALUES
+('Test', 1);
+
+UPDATE flags_1
+SET country_id = 2
+WHERE id = 1;
+
+-- 1 : 1
+CREATE TABLE countries_2 (
+  id SERIAL PRIMARY KEY,
+  "name" TEXT NOT NULL,
+  -- flag_id INT NOT NULL REFERENCES flags_2 (id),
+  created_at TIMESTAMP DEFAULT current_timestamp
+);
+
+CREATE TABLE flags_2 (
+  id SERIAL PRIMARY KEY,
+  country_id INT NOT NULL REFERENCES countries_2 (id) DEFERRABLE INITIALLY DEFERRED,
+  created_at TIMESTAMP DEFAULT current_timestamp
+);
+
+ALTER TABLE countries_2
+ADD COLUMN flag_id INT NOT NULL REFERENCES flags_2 (id) DEFERRABLE INITIALLY DEFERRED;
+
+--
+-- DROP TABLE flags_2 CASCADE;
+--
+BEGIN; -- початок транзакції
+INSERT INTO flags_2
+(country_id)
+VALUES
+(4);
+
+INSERT INTO countries_2
+("name", flag_id)
+VALUES
+('Test', 4);
+COMMIT; -- кінець транзакції
