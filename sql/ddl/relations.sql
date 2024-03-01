@@ -90,24 +90,26 @@ CREATE TABLE countries_2 (
 
 CREATE TABLE flags_2 (
   id SERIAL PRIMARY KEY,
-  country_id INT NOT NULL REFERENCES countries_2 (id) DEFERRABLE INITIALLY DEFERRED,
+  country_id INT NOT NULL REFERENCES countries_2 (id) ON DELETE CASCADE ON UPDATE CASCADE DEFERRABLE INITIALLY DEFERRED,
   created_at TIMESTAMP DEFAULT current_timestamp
 );
 
 ALTER TABLE countries_2
-ADD COLUMN flag_id INT NOT NULL REFERENCES flags_2 (id) DEFERRABLE INITIALLY DEFERRED;
+ADD COLUMN flag_id INT NOT NULL REFERENCES flags_2 (id) ON DELETE CASCADE ON UPDATE CASCADE  DEFERRABLE INITIALLY DEFERRED;
 
 --
--- DROP TABLE flags_2 CASCADE;
+-- DROP TABLE countries_2 CASCADE;
 --
 BEGIN; -- початок транзакції
 INSERT INTO flags_2
 (country_id)
 VALUES
-(4);
+(1);
 
 INSERT INTO countries_2
 ("name", flag_id)
 VALUES
-('Test', 4);
+('Test', 1);
 COMMIT; -- кінець транзакції
+--
+DELETE FROM countries_2;
