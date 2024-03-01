@@ -33,7 +33,7 @@ CREATE TABLE products (
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY,
   "status" TEXT,
-  user_id INT NOT NULL REFERENCES users (id),
+  user_email INT NOT NULL REFERENCES users (email),
   created_at TIMESTAMP DEFAULT current_timestamp,
   updated_at TIMESTAMP DEFAULT current_timestamp
 );
@@ -57,8 +57,9 @@ CREATE TABLE countries_1 (
 
 CREATE TABLE flags_1 (
   id SERIAL PRIMARY KEY,
-  country_id INT REFERENCES countries_1 (id),
-  created_at TIMESTAMP DEFAULT current_timestamp
+  country_id INT REFERENCES countries_1,
+  created_at TIMESTAMP DEFAULT current_timestamp,
+  -- FOREIGN KEY (country_id) REFERENCES countries_1 (id)
 );
 
 ALTER TABLE countries_1
