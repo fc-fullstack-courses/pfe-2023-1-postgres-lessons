@@ -74,9 +74,9 @@ FROM users
 JOIN orders ON users.id = orders.user_id
 GROUP BY email;
 -- зв'язок декількох таблиць
-SELECT *
-FROM orders
-JOIN products_to_orders ON products_to_orders.order_id = orders.id
-JOIN products ON products_to_orders.product_id = products.id
-JOIN users ON orders.user_id = users.id
-WHERE users.id = 1;
+SELECT u.id, p.*
+FROM orders o
+JOIN products_to_orders pto ON pto.order_id = o.id
+JOIN products p ON pto.product_id = p.id
+JOIN users u ON o.user_id = u.id
+WHERE u.id = 1;
