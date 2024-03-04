@@ -132,3 +132,26 @@ SELECT u.*
 FROM users u
 LEFT JOIN orders o ON o.user_id = u.id
 WHERE o.user_id IS NULL;
+-- всі продукти у яких є відгуки
+SELECT p.*
+FROM products p
+JOIN reviews r ON r.product_id = p.id
+GROUP BY p.id;
+-- всі продукти у яких немає відгуків
+SELECT p.* , r.body
+FROM reviews r
+RIGHT JOIN products p ON r.product_id = p.id
+WHERE r.product_id IS NULL;
+-- вартість п'ятого замовлення
+SELECT sum( price * pto.quantity )
+FROM products_to_orders pto
+JOIN products p ON p.id = pto.product_id
+WHERE order_id = 5;
+/*
+  5 * 100 + 2 * 35 + 3 * 3 = 579
+*/
+-- вартість кожного замовлення
+SELECT order_id, sum( price * pto.quantity )
+FROM products_to_orders pto
+JOIN products p ON p.id = pto.product_id
+GROUP BY order_id;
