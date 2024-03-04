@@ -155,3 +155,9 @@ SELECT order_id, sum( price * pto.quantity )
 FROM products_to_orders pto
 JOIN products p ON p.id = pto.product_id
 GROUP BY order_id;
+-- скалярний підзапит
+SELECT 4 * 3;
+--
+SELECT *
+FROM users
+WHERE id = (SELECT 4 * 3);
