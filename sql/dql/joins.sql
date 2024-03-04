@@ -80,3 +80,55 @@ JOIN products_to_orders pto ON pto.order_id = o.id
 JOIN products p ON pto.product_id = p.id
 JOIN users u ON o.user_id = u.id
 WHERE u.id = 1;
+-- Типи джойнів
+-- CROSS JOIN - декартовий добуток
+SELECT *
+FROM users
+CROSS JOIN orders;
+--
+SELECT * FROM users, orders;
+-- INNER JOIN = JOIN - шукає дані які є обох таблицях одночасно
+SELECT email
+FROM users
+INNER JOIN orders ON users.id = orders.user_id
+GROUP BY email;
+-- OUTER JOINS - має декілька варіацій
+-- діляться на ліві, праві та повні джойни
+-- LEFT JOIN - лівий джойн, бере всі записи які дає INNER JOIN 
+-- а потім всі дані з лівої таблиці
+SELECT *
+FROM 
+users -- ліва таблиця
+LEFT JOIN 
+orders -- права таблиця
+ON users.id = orders.user_id;
+-- RIGHT JOIN - бере всі записи які дає INNER JOIN 
+-- а потім всі дані з правої таблиці
+SELECT users.*, orders.*
+FROM 
+orders -- ліва таблиця
+RIGHT JOIN 
+users -- права таблиця
+ON users.id = orders.user_id;
+-- FULL JOIN - бере всі записи які дає INNER JOIN 
+-- а потім всі дані з лівої таблиці
+-- а потім всі дані з правої таблиці
+SELECT users.*, orders.*
+FROM 
+orders -- ліва таблиця
+FULL JOIN 
+users -- права таблиця
+ON users.id = orders.user_id;
+-- Інклюзивні та ексклюзивні джойни
+-- за замовчанням джойни інклюзивні
+-- продукти які відсутні у будь-яком замовленні
+SELECT p.*
+FROM products p
+LEFT JOIN products_to_orders pto ON pto.product_id = p.id
+-- умова ексклюзивності
+WHERE pto.product_id IS NULL;
+-- користувачі які не робили замовлень
+SELECT u.*
+FROM users u
+LEFT JOIN orders o ON o.user_id = u.id
+WHERE o.user_id IS NULL;
