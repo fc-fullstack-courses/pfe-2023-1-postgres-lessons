@@ -81,3 +81,10 @@ SELECT CASE
   ELSE 'всі інші'
 END "бренд"
 FROM products;
+-- COALESCE (arg1, arg2 ) - повертає перший НЕ NULL arg
+SELECT id, "description", COALESCE ("description", 'lorem description')
+FROM products;
+
+-- UPDATE products
+-- SET description = NULL
+-- WHERE id BETWEEN 5 AND 50;
