@@ -61,4 +61,23 @@ END "вікова категорія",
 count(*) "кількість"
 FROM users
 GROUP BY "вікова категорія";
-
+/*
+  за допомогою CASE
+  повернути у селекті стовпчик "бренд"
+    Для Google -> Alphabet
+    Для Samsung -> Щось на корейскій
+    Для інших -> всі інші
+*/
+SELECT CASE manufacturer
+  WHEN 'Google' THEN 'Alphabet'
+  WHEN 'Samsung' THEN 'Щось на корейскій'
+  ELSE 'всі інші'
+END "бренд"
+FROM products;
+--
+SELECT CASE 
+  WHEN manufacturer = 'Google' THEN 'Alphabet'
+  WHEN manufacturer = 'Samsung' THEN 'Щось на корейскій'
+  ELSE 'всі інші'
+END "бренд"
+FROM products;
