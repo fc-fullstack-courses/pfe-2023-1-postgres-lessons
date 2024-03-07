@@ -88,3 +88,8 @@ FROM products;
 -- UPDATE products
 -- SET description = NULL
 -- WHERE id BETWEEN 5 AND 50;
+-- NULLIF (val1 , val2) - повертае NULL якщо val1 = val2, інакше повертає val1
+SELECT NULLIF(10, 15); -- 10
+SELECT NULLIF(500, 500); -- NULL
+SELECT NULLIF(NULL, 500); -- NULL
+SELECT NULLIF('test', 'text'); -- test
